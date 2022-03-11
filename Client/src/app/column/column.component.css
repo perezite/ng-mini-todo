@@ -30,6 +30,10 @@
   border: none;
 }
 
+.list-item-content {
+  width: 90%;
+}
+
 /* Highlight the list item that is being dragged. */
 .cdk-drag-preview {
   border-radius: 4px;
@@ -52,8 +56,8 @@
   opacity: 0;
 }
 
-.position-top-right {
+.menu-button {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: .4rem;
+  right: .5rem;
 }

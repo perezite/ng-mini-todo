@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-column',
@@ -7,6 +8,10 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./column.component.css'],
 })
 export class ColumnComponent {
+  @ViewChild('contextMenu', { read: MatMenuTrigger }) contextMenu!: MatMenuTrigger;
+
+  contextMenuPosition = { left: 300, top: 300 };
+
   todo = [
     'Get to work',
     'Pick up groceries',
@@ -15,7 +20,7 @@ export class ColumnComponent {
   ];
 
   done = [
-    'Get up WWWWWWWWWWWWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWWWWW WWWWWWWWWWWWWWWWWWWWWWWW',
+    'Get up',
     'Brush teeth',
     'Take a shower',
     'Check e-mail',
@@ -31,5 +36,12 @@ export class ColumnComponent {
         event.previousIndex,
         event.currentIndex);
     }
+  }
+
+  onContextMenu(event: MouseEvent) {
+    this.contextMenuPosition.left = event.x;
+    this.contextMenuPosition.top = event.y;
+    event.preventDefault();
+    this.contextMenu.openMenu();
   }
 }
