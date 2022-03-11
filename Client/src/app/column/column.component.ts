@@ -1,6 +1,6 @@
-import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-column',
@@ -8,7 +8,8 @@ import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
   styleUrls: ['./column.component.css'],
 })
 export class ColumnComponent {
-  @ViewChild('contextMenu', { read: MatMenuTrigger }) contextMenu!: MatMenuTrigger;
+  // https://stackoverflow.com/questions/37450805/what-is-the-read-parameter-in-viewchild-for
+  @ViewChild('contextMenu', { read: MatMenuTrigger }) contextMenuTrigger!: MatMenuTrigger;
 
   contextMenuPosition = { left: 300, top: 300 };
 
@@ -39,9 +40,9 @@ export class ColumnComponent {
   }
 
   onContextMenu(event: MouseEvent) {
+    event.preventDefault();
     this.contextMenuPosition.left = event.x;
     this.contextMenuPosition.top = event.y;
-    event.preventDefault();
-    this.contextMenu.openMenu();
+    this.contextMenuTrigger.openMenu();
   }
 }

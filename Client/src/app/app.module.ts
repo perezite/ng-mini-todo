@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { ColumnComponent } from './column/column.component';
 
-import { MaterialExampleModule } from '../material.module'
+import { MaterialExampleModule } from '../material.module';
 
 @NgModule({
   declarations: [
