@@ -9,6 +9,8 @@ import { MatMenuTrigger } from '@angular/material/menu';
 })
 export class ColumnComponent {
   // https://stackoverflow.com/questions/37450805/what-is-the-read-parameter-in-viewchild-for
+  // Note: MatMenuTrigger seems to be a directive (not a component), so according to the logic as explained in the above SO post,
+  // we have to explicitly specify that we want the MatMenuTrigger directive by using the read parameter. Otherwise, we get an ElementRef
   @ViewChild('contextMenu', { read: MatMenuTrigger }) contextMenuTrigger!: MatMenuTrigger;
 
   contextMenuPosition = { left: 300, top: 300 };
